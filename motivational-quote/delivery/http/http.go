@@ -1,25 +1,20 @@
 package http
 
 import (
-    "embed"
-    "net/http"
-    "os"
+	"os"
 
-    "github.com/bytedance/sonic"
-    "github.com/gofiber/fiber/v2"
-    "github.com/gofiber/fiber/v2/middleware/compress"
-    "github.com/gofiber/fiber/v2/middleware/logger"
-    "github.com/gofiber/template/html/v2"
-    "motivational-reminder/delivery/http/router"
-    "motivational-reminder/domain"
+	"motivational-reminder/delivery/http/router"
+	"motivational-reminder/domain"
+
+	"github.com/bytedance/sonic"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/compress"
+	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/gofiber/template/html/v2"
 )
 
-//go:embed views/*
-var viewsfs embed.FS
 
-func NewHttpDelivery(domain domain.Domain) *fiber.App {
-    engine := html.NewFileSystem(http.FS(viewsfs), ".html")
-
+func NewHttpDelivery(domain domain.Domain,engine *html.Engine) *fiber.App {
     config := fiber.Config{
         AppName:           os.Getenv("APP_NAME"),
         EnablePrintRoutes: true,

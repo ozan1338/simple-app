@@ -26,7 +26,7 @@ func (this *BookController) GetAllBook(ctx *fiber.Ctx) error {
 		return ctx.Status(statusCode).JSON(resp)
 	}
 
-	return ctx.Render("views/home/home", fiber.Map{
+	return ctx.Render("resource/views/home", fiber.Map{
 		"Books": books,
 	})
 }

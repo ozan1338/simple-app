@@ -1,10 +1,11 @@
 package controller
 
 import (
-    "github.com/gofiber/fiber/v2"
-    "system-gift-point/delivery/http/dto/request"
-    "system-gift-point/domain"
-    "system-gift-point/shared/util"
+	"system-gift-point/delivery/http/dto/request"
+	"system-gift-point/domain"
+	"system-gift-point/shared/util"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 type SystemPointController struct {
@@ -25,7 +26,7 @@ func (this *SystemPointController) GetAllPoint(ctx *fiber.Ctx) error {
         return ctx.Status(statusCode).JSON(resp)
     }
 
-    return ctx.Render("views/home/home", fiber.Map{
+    return ctx.Render("resource/views/home", fiber.Map{
         "Actions":    actions,
         "TotalPoint": totalPoint,
     })

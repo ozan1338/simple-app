@@ -1,8 +1,6 @@
 package http
 
 import (
-	"embed"
-	"net/http"
 	"os"
 
 	"favourite-book/delivery/http/router"
@@ -15,12 +13,7 @@ import (
 	"github.com/gofiber/template/html/v2"
 )
 
-//go:embed views/*
-var viewsfs embed.FS
-
-func NewHttpDelivery(domain domain.Domain) *fiber.App {
-    engine := html.NewFileSystem(http.FS(viewsfs), ".html")
-
+func NewHttpDelivery(domain domain.Domain, engine *html.Engine) *fiber.App {
     config := fiber.Config{
         AppName:           os.Getenv("APP_NAME"),
         EnablePrintRoutes: true,

@@ -1,10 +1,11 @@
 package controller
 
 import (
-    "github.com/gofiber/fiber/v2"
-    "motivational-reminder/delivery/http/dto/request"
-    "motivational-reminder/domain"
-    "motivational-reminder/shared/util"
+	"motivational-reminder/delivery/http/dto/request"
+	"motivational-reminder/domain"
+	"motivational-reminder/shared/util"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 type QuoteController struct {
@@ -25,7 +26,7 @@ func (this *QuoteController) GetQuote(ctx *fiber.Ctx) error {
         return ctx.Status(statusCode).JSON(resp)
     }
 
-    return ctx.Render("views/home/home", fiber.Map{
+    return ctx.Render("resource/views/home", fiber.Map{
         "Quote": quote.Text,
     })
 }
